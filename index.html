@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#080914">
+
+    <title>NEXUS — Tic-Tac-Toe</title>
+
+    <meta name="description"
+        content="Enter NEXUS, a futuristic Tic-Tac-Toe experience. Challenge a friend or test your skills against AI.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="background-effects">
+        <div class="orb orb-one"></div>
+        <div class="orb orb-two"></div>
+        <div class="grid-overlay"></div>
+    </div>
+
+    <main class="app-container">
+
+        <!-- HEADER -->
+        <header class="topbar">
+
+            <a href="#" class="brand">
+                <span class="brand-icon">N</span>
+                <span class="brand-name">NEXUS<span class="brand-dot">.</span></span>
+            </a>
+
+            <div class="system-status">
+                <span class="status-dot"></span>
+                SYSTEM ONLINE
+            </div>
+
+        </header>
+
+        <!-- HERO -->
+        <section class="hero">
+
+            <div class="eyebrow">
+                <span class="eyebrow-line"></span>
+                THE ULTIMATE STRATEGY GAME
+            </div>
+
+            <h1>
+                THINK.<br>
+                <span class="gradient-text">PLAY.</span>
+                CONQUER.
+            </h1>
+
+            <p class="hero-description">
+                Three in a row. One brilliant move.
+                Enter the arena and prove your strategy.
+            </p>
+
+        </section>
+
+        <!-- GAME PANEL -->
+        <section class="game-panel">
+
+            <div class="game-topline">
+
+                <div>
+                    <p class="section-label">GAME ARENA</p>
+                    <h2>Match <span class="accent-number">001</span></h2>
+                </div>
+
+                <div class="header-actions">
+
+                    <button
+                        class="sound-toggle"
+                        id="sound-toggle"
+                        type="button"
+                        aria-pressed="false"
+                        aria-label="Mute sound effects"
+                        title="Toggle sound effects"
+                    >
+                        <span id="sound-icon">♫</span>
+                        <span id="sound-label">SOUND ON</span>
+                    </button>
+
+                    <div class="live-badge">
+                        <span class="status-dot"></span>
+                        LIVE
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- MODE SELECTOR -->
+            <div class="mode-selector">
+
+                <button class="mode-btn active" data-mode="pvp" type="button" aria-pressed="true">
+                    <span class="mode-icon">⚔</span>
+                    <span>2 PLAYERS</span>
+                </button>
+
+                <button class="mode-btn" data-mode="ai" type="button" aria-pressed="false">
+                    <span class="mode-icon">◈</span>
+                    <span>VS COMPUTER</span>
+                </button>
+
+            </div>
+
+            <div class="difficulty-panel" id="difficulty-panel" hidden>
+
+                <label for="difficulty-select">AI DIFFICULTY</label>
+
+                <select id="difficulty-select">
+                    <option value="easy">EASY — Casual</option>
+                    <option value="medium" selected>MEDIUM — Tactical</option>
+                    <option value="impossible">IMPOSSIBLE — Minimax</option>
+                </select>
+
+            </div>
+
+            <!-- SCOREBOARD -->
+            <div class="scoreboard">
+
+                <div class="score-card score-x active-score" id="score-card-x">
+                    <span class="player-symbol">X</span>
+                    <span class="player-name" id="player-name-x">PLAYER X</span>
+                    <strong class="score-value" id="score-x">0</strong>
+                    <span class="score-caption">VICTORIES</span>
+                </div>
+
+                <div class="score-divider">
+                    <span>VS</span>
+                    <div class="divider-line"></div>
+                    <span class="draw-label">DRAWS</span>
+                    <strong id="score-draw">0</strong>
+                </div>
+
+                <div class="score-card score-o" id="score-card-o">
+                    <span class="player-symbol">O</span>
+                    <span class="player-name" id="player-name-o">PLAYER O</span>
+                    <strong class="score-value" id="score-o">0</strong>
+                    <span class="score-caption">VICTORIES</span>
+                </div>
+
+            </div>
+
+            <!-- TURN INDICATOR -->
+            <div class="turn-indicator" id="turn-indicator" aria-live="polite">
+                <span class="turn-pulse"></span>
+                <span id="turn-text">PLAYER X'S TURN</span>
+            </div>
+
+            <!-- BOARD -->
+            <div
+                class="game-board"
+                id="game-board"
+                role="group"
+                aria-label="Tic-Tac-Toe game board"
+            >
+
+                <button class="cell" data-index="0" type="button" aria-label="Top left cell"></button>
+                <button class="cell" data-index="1" type="button" aria-label="Top middle cell"></button>
+                <button class="cell" data-index="2" type="button" aria-label="Top right cell"></button>
+
+                <button class="cell" data-index="3" type="button" aria-label="Middle left cell"></button>
+                <button class="cell" data-index="4" type="button" aria-label="Center cell"></button>
+                <button class="cell" data-index="5" type="button" aria-label="Middle right cell"></button>
+
+                <button class="cell" data-index="6" type="button" aria-label="Bottom left cell"></button>
+                <button class="cell" data-index="7" type="button" aria-label="Bottom middle cell"></button>
+                <button class="cell" data-index="8" type="button" aria-label="Bottom right cell"></button>
+
+            </div>
+
+            <!-- GAME RESULT -->
+            <div class="result-message" id="result-message" aria-live="polite" hidden>
+                <span class="result-icon" id="result-icon">✦</span>
+                <h3 id="result-title">VICTORY!</h3>
+                <p id="result-description">An excellent match.</p>
+            </div>
+
+            <!-- CONTROLS -->
+            <div class="game-controls">
+
+                <button class="btn btn-secondary" id="reset-btn" type="button">
+                    <span>↻</span>
+                    RESET ROUND
+                </button>
+
+                <button class="btn btn-primary" id="new-game-btn" type="button">
+                    NEW GAME
+                    <span>→</span>
+                </button>
+
+            </div>
+
+            <p class="game-footnote">
+                <span>✦</span>
+                EVERY MOVE COUNTS. MAKE YOURS.
+            </p>
+
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+
+            <span>© 2026 NEXUS ARENA</span>
+
+            <span class="footer-center">
+                DESIGNED FOR STRATEGISTS
+            </span>
+
+            <span class="footer-right">
+                POWERED BY <strong>JAVASCRIPT</strong>
+            </span>
+
+        </footer>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
